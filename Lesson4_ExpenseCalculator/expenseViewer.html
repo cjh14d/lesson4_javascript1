@@ -60,9 +60,25 @@
           *           later in the program and it must match EXACTLY including the case.
           *      2.)  Each name value must be unique and enclosed in quotes.  This value will be referenced
           *           later in the program and it must match EXACTLY including the case.
+	  *	
+          * HINT:  Use the following variable names:  householdInput, otherInput, transportationInput
+          *
           *************************************************************************************************-->
-
-
+          <p><label for="householdInput">
+            Household (utilities, cell phone, cable, maintenance etc.):
+              <input type="text" id="householdInput" name="household" />
+              </label>
+          </p>
+          <p><label for="transportationInput">
+			      Transportation (public transit, parking, gas, etc.):
+              <input type="text" id="transportationInput" name="transportation" />
+              </label>
+          </p>
+		           <p><label for="otherInput">
+			        Other (magazines, child care, etc.):
+              <input type="text" id="otherInput" name="other" />
+              </label>
+          </p>
 
         
         </fieldset>                 
@@ -133,12 +149,16 @@
                * 
                *          The document.getElementById() method accesses the first element in the HTML document with
                *          the specified id.  
+               *
+               * HINT:  Use the following variable names:  householdAmt, otherAmt, transportationAmt
               **************************************************************************************************/
               
               var shelterAmt = document.getElementById("shelterInput").value;
               var foodAmt = document.getElementById("foodInput").value;
+			        var householdAmt = document.getElementById("householdInput").value;
+			        var transportationAmt = document.getElementById("transportationInput").value;
+			        var otherAmt = document.getElementById("otherInput").value;
 
-              
               
 
               /*************************************************************************************************
@@ -159,6 +179,9 @@
 
               shelterAmt = parseFloat(shelterAmt);
               foodAmt = parseFloat(foodAmt);
+			        householdAmt = parseFloat(householdAmt);
+			        transportationAmt = parseFloat(transportationAmt);
+			        otherAmt = parseFloat(otherAmt);
 
 
 
@@ -173,12 +196,16 @@
                *          total expenses and the percentages for each of the following categories:  Shelter, Food, 
                *          Household (you must add), Transportation (you must add), and Miscellaneous (you must add). 
                *          Use good naming conventions for the variable names.    
+               * 
+               * HINT:  Use the following variable names:  householdPct, otherPct, transportationPct
               *******************************************************************************************************/              
               
               var totalExpenses; //total expenses for the user
               var shelterPct; //shelter category percentage
               var foodPct;  //food category percentage
-
+			        var householdPct;  //household category percentage
+			        var transportationPct;  //transportation category percentage
+			        var otherPct;  //other category percentage
 
 
 
@@ -187,7 +214,9 @@
                *          of the NEW categories you've added (Household, Transportation, and Miscellaneous). 
                *          Use the code below as an example.  The totalExpenses is calculated by adding all the categories
                *          together using the variables initalized in Task 3.  
+               *
                *          Ex.  totalExpenses = shelterAmt + foodAmt + YourVariable + YourVariable + YourVariable;
+	       *          HINT:  Make sure this statement is BEFORE the statements that calculate the percentages!!!
                * 
                * Explanation of Code:  
                *          This section of the code calculates the total expenses of all the categories and calculates 
@@ -197,9 +226,12 @@
                *          variables declared in Task 4.  
               *******************************************************************************************************/   
          
-
+              totalExpenses = shelterAmt + foodAmt + householdAmt + transportationAmt + otherAmt;
               shelterPct = 100 * (shelterAmt / totalExpenses);
               foodPct = 100 * (foodAmt / totalExpenses);
+			        householdPct = 100 * (householdAmt / totalExpenses);
+			        transportationPct = 100 * (transportationAmt / totalExpenses);
+			        otherPct = 100 * (otherAmt / totalExpenses);
 
 
               /******************************************************************************************************
@@ -211,11 +243,12 @@
                *          This section of the code displays the total expenses and the percentages for each category.
                *          The getElementById() method is used to identify the place on the HTML page the calculation
                *          result will be placed.  It uses the specific id's, which were defined above.  The id names
-               *          are given to you!!!!  You must add the remaining categories using the following id's:
-               *          householdPercentage, transportationPercentage, and otherPercentage.  It is case sensitive!!!
+               *          are given to you!!!!  
                *          The toFixed() method is used to ensure a specified number of digits appear after the decimal
                *          place for the value.
                * 
+               *          HINT:  Use the following variable names:  householdPercentage, transportationPercentage, and *          otherPercentage.  It is case sensitive!!!
+               *
                *          The innerHTML property used with the document.getElementById() sets or returns the HTML
                *          content (inner HTML) of an element.
               *******************************************************************************************************/  
@@ -223,6 +256,9 @@
               document.getElementById("totalExpenses").innerHTML = "<b>Total Expenses:     $</b> " + totalExpenses.toFixed(2);
               document.getElementById("shelterPercentage").innerHTML = "% for <b>shelter</b>:      " + shelterPct.toFixed(1);      
               document.getElementById("foodPercentage").innerHTML = "% for <b>food:</b>      " + foodPct.toFixed(1);
+			        document.getElementById("householdPercentage").innerHTML = "% for <b>household:</b>      " + householdPct.toFixed(1);
+			        document.getElementById("otherPercentage").innerHTML = "% for <b>other:</b>      " + otherPct.toFixed(1);
+			        document.getElementById("transportationPercentage").innerHTML = "% for <b>transportation:</b>      " + transportationPct.toFixed(1);
 
          
          
@@ -258,6 +294,9 @@
               document.getElementById("totalExpenses").innerHTML = ""; 
               document.getElementById("shelterPercentage").innerHTML = "";      
               document.getElementById("foodPercentage").innerHTML  = "";
+			        document.getElementById("householdPercentage").innerHTML  = "";
+			        document.getElementById("otherPercentage").innerHTML  = "";
+			        document.getElementById("transportationPercentage").innerHTML  = "";
 
 
               
@@ -270,3 +309,6 @@
     
 </body>
 </html>
+
+
+      
